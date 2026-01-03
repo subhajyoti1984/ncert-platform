@@ -1,28 +1,27 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from app.core.db import conn
 from app.core.security import verify_password
 import jwt
 import datetime
 import os
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/auth",
+    tags=["auth"]
+)
 
-# NEVER hardcode in real deployments
+security = HTTPBearer()
+
 SECRET = os.getenv("JWT_SECRET", "CHANGE_THIS")
+ALGORITHM = "HS256"
+
 
 # -------------------------
 # LOGIN
 # -------------------------
 @router.post("/login")
 def login(payload: dict):
-    """
-    Payload:
-    {
-      "email": "...",
-      "password": "..."
-    }
-    """
-
     email = payload.get("email")
     password = payload.get("password")
 
@@ -46,11 +45,11 @@ def login(payload: dict):
 
     token = jwt.encode(
         {
-            "user_id": str(user_id),
+            "sub": str(user_id),
             "exp": datetime.datetime.utcnow() + datetime.timedelta(days=7)
         },
         SECRET,
-        algorithm="HS256"
+        algorithm=ALGORITHM
     )
 
     return {"token": token}
@@ -60,13 +59,19 @@ def login(payload: dict):
 # CURRENT USER
 # -------------------------
 @router.get("/me")
-def me(token: str):
+def me(
+    credentials: HTTPAuthorizationCredentials = Depends(security)
+):
     try:
-        payload = jwt.decode(token, SECRET, algorithms=["HS256"])
-        return {
-            "user_id": payload["user_id"]
-        }
+        payload = jwt.decode(
+            credentials.credentials,
+            SECRET,
+            algorithms=[ALGORITHM]
+        )
+        return {"user_id": payload["sub"]}
+
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
+
     except jwt.InvalidTokenError:
         raise HTTPException(status_code=401, detail="Invalid token")
