@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from app.core.db import conn
+from app.core.db import get_conn
 from app.core.security import verify_password
 import jwt
 import datetime
@@ -28,7 +28,7 @@ def login(payload: dict):
     if not email or not password:
         raise HTTPException(status_code=400, detail="Email and password required")
 
-    with conn.cursor() as cur:
+    with get_conn.cursor() as cur:
         cur.execute(
             "SELECT id, password_hash FROM users WHERE email = %s",
             (email,)
