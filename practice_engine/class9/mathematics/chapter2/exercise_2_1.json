@@ -1,0 +1,70 @@
+{
+  "exercise_id": "EX-2.1",
+  "chapter_id": "M9-MATH-CH2",
+
+  "questions": [
+    {
+      "question_id": "EX2.1-Q1",
+      "linked_concepts": [
+        "concept_2_2_2"
+      ],
+      "question_type": "WHY",
+      "prompt": "Which of the following expressions are polynomials in one variable? State reasons.",
+      "evaluates": [
+        "definition_understanding",
+        "justification_skill"
+      ]
+    },
+    {
+      "question_id": "EX2.1-Q2",
+      "linked_concepts": [
+        "concept_2_2_3"
+      ],
+      "question_type": "ID",
+      "prompt": "Write the coefficients of x^2 in the given expressions.",
+      "evaluates": [
+        "coefficient_identification"
+      ]
+    },
+    {
+      "question_id": "EX2.1-Q3",
+      "linked_concepts": [
+        "concept_2_2_5"
+      ],
+      "question_type": "CONS",
+      "prompt": "Give examples of binomial and monomial of given degrees.",
+      "evaluates": [
+        "construction_skill"
+      ]
+    },
+    {
+      "question_id": "EX2.1-Q4",
+      "linked_concepts": [
+        "concept_2_2_4",
+        "concept_2_2_6"
+      ],
+      "question_type": "NUM",
+      "prompt": "Write the degree of the given polynomials.",
+      "evaluates": [
+        "degree_identification"
+      ]
+    },
+    {
+      "question_id": "EX2.1-Q5",
+      "linked_concepts": [
+        "concept_2_2_5"
+      ],
+      "question_type": "CLASS",
+      "prompt": "Classify the following polynomials as linear, quadratic or cubic.",
+      "evaluates": [
+        "classification_accuracy"
+      ]
+    }
+  ],
+
+  "practice_rules": {
+    "no_direct_advancement": true,
+    "practice_does_not_unlock_concepts": true,
+    "diagnostics_feed_enabled": true
+  }
+}

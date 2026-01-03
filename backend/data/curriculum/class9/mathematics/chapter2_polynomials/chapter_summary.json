@@ -1,0 +1,86 @@
+{
+  "chapter_id": "M9-MATH-CH2",
+  "title": "Polynomials",
+
+  "chapter_overview": "This chapter introduces polynomials, their terminology, degree, classification, zeroes, factorisation, and important algebraic identities. It builds the foundation for algebraic manipulation and equation solving in higher classes.",
+
+  "key_definitions": [
+    "A polynomial p(x) in one variable x is an algebraic expression of the form a_n x^n + a_{n-1} x^{n-1} + ... + a_1 x + a_0, where a_n ≠ 0 and n is a non-negative integer.",
+    "Each a_i is called a coefficient, and each term a_i x^i is called a term of the polynomial.",
+    "The degree of a polynomial is the highest power of the variable with a non-zero coefficient."
+  ],
+
+  "classification_summary": {
+    "by_number_of_terms": {
+      "monomial": "Polynomial with one term",
+      "binomial": "Polynomial with two terms",
+      "trinomial": "Polynomial with three terms"
+    },
+    "by_degree": {
+      "linear": "Degree 1 polynomial",
+      "quadratic": "Degree 2 polynomial",
+      "cubic": "Degree 3 polynomial"
+    }
+  },
+
+  "special_cases": [
+    "The degree of a non-zero constant polynomial is 0.",
+    "The degree of the zero polynomial is not defined.",
+    "A non-zero constant polynomial has no zero.",
+    "Every real number is a zero of the zero polynomial."
+  ],
+
+  "zeroes_and_roots": [
+    "A real number a is called a zero of a polynomial p(x) if p(a) = 0.",
+    "Finding a zero of a polynomial is equivalent to solving the equation p(x) = 0.",
+    "Every linear polynomial has exactly one zero.",
+    "A polynomial of higher degree may have more than one zero."
+  ],
+
+  "factor_theorem": {
+    "statement": "x − a is a factor of the polynomial p(x) if and only if p(a) = 0.",
+    "use_cases": [
+      "Finding factors of polynomials",
+      "Factorisation of quadratic and cubic polynomials",
+      "Determining unknown constants in polynomials"
+    ]
+  },
+
+  "algebraic_identities_covered": [
+    "(x + y)^2 = x^2 + 2xy + y^2",
+    "(x − y)^2 = x^2 − 2xy + y^2",
+    "x^2 − y^2 = (x + y)(x − y)",
+    "(x + a)(x + b) = x^2 + (a + b)x + ab",
+    "(x + y + z)^2 = x^2 + y^2 + z^2 + 2xy + 2yz + 2zx",
+    "(x + y)^3 = x^3 + y^3 + 3xy(x + y)",
+    "(x − y)^3 = x^3 − y^3 − 3xy(x − y)",
+    "x^3 + y^3 + z^3 − 3xyz = (x + y + z)(x^2 + y^2 + z^2 − xy − yz − zx)"
+  ],
+
+  "skills_gained": [
+    "Identifying and classifying polynomials",
+    "Determining degree and coefficients",
+    "Evaluating polynomials at given values",
+    "Finding zeroes of polynomials",
+    "Factorising polynomials using identities and the Factor Theorem",
+    "Applying algebraic identities to simplify and evaluate expressions"
+  ],
+
+  "exam_focus_points": [
+    "Clear identification of degree",
+    "Correct use of terminology (linear, quadratic, cubic)",
+    "Justification in polynomial/non-polynomial questions",
+    "Accurate application of Factor Theorem",
+    "Correct recall and application of algebraic identities"
+  ],
+
+  "chapter_completion_status": {
+    "ready_for_exams": true,
+    "feeds_into_future_chapters": [
+      "Zeroes of a Polynomial",
+      "Factorisation",
+      "Algebraic Identities",
+      "Polynomial Equations"
+    ]
+  }
+}

@@ -1,0 +1,367 @@
+PROJECT_SPEC_v1.txt
+====================
+
+PROJECT NAME:
+-------------
+(Modular AI Learning Platform – NCERT-first, Classes 1–12)
+
+ONE-LINE DEFINITION:
+-------------------
+A modular, syllabus-locked AI learning platform for classes 1–12 that teaches
+concept-by-concept, adapts to student personality and weaknesses, supports
+multilingual text and voice, integrates practice, exams, forums, live tutors,
+and payments — without requiring re-engineering when new features are added.
+
+===========================================================
+SECTION 1: NON-NEGOTIABLE DESIGN PRINCIPLES (FROZEN)
+===========================================================
+
+1. MODULAR ARCHITECTURE
+   - The system MUST be built as independent modules.
+   - Adding a new feature MUST NOT require rewriting existing modules.
+
+2. LEARNING CORE IS IMMUTABLE
+   - Core teaching logic and syllabus structure never change.
+   - AI, UI, payments, tutors, forums plug into it.
+
+3. CONTENT ≠ INTELLIGENCE ≠ PRESENTATION
+   - Content (syllabus) is static and canonical.
+   - Intelligence (AI, diagnostics, orchestration) is separate.
+   - Presentation (UI, animations, voice) is replaceable.
+
+4. DETERMINISTIC TEACHING FLOW
+   - No free-chat learning.
+   - Learning follows a fixed state machine.
+
+5. ENGLISH-CANONICAL SYLLABUS CORE
+   - All syllabus content is stored in English.
+   - Local languages are rendering layers only.
+   - Mathematical terms are NEVER translated.
+
+6. PROGRESSIVE ENHANCEMENT
+   - MVP works with minimal modules.
+   - Advanced features attach later without refactor.
+
+===========================================================
+SECTION 2: USER EXPERIENCE (WHAT USERS SEE)
+===========================================================
+
+The app has EXACTLY FIVE primary user-facing screens in v1.
+
+SCREEN 1: SETUP (ONE-TIME)
+--------------------------
+User selects:
+- Class (1–12)
+- Board (CBSE / ICSE / State)
+- Subject
+- Preferred explanation language
+
+Stored in user profile.
+Never asked again unless changed.
+
+SCREEN 2: CHAPTER LIST
+---------------------
+Shows list of chapters for selected class + subject.
+Pure navigation. No teaching.
+
+SCREEN 3: CHAPTER OVERVIEW
+-------------------------
+Shows:
+- What the chapter is about
+- Skills student will gain
+- Why it matters
+- Connection to future chapters
+- Estimated learning time
+
+SCREEN 4: SECTION LIST
+---------------------
+Shows all sections inside the chapter.
+Each section is independent.
+
+SCREEN 5: LEARNING LOOP (CORE SCREEN)
+------------------------------------
+This screen repeats for every concept.
+
+Each loop:
+1. Explain ONE idea
+2. Ask one or more questions (as configured)
+3. Evaluate response
+4. Diagnose mistakes
+5. Correct and proceed
+
+No long lectures.
+No uncontrolled conversation.
+
+===========================================================
+SECTION 3: UNIVERSAL CURRICULUM SKELETON
+===========================================================
+
+This skeleton applies to ALL classes, ALL subjects, ALL chapters.
+
+STRUCTURE:
+----------
+Class
+ └── Subject
+      └── Chapter
+           ├── Chapter Meta
+           ├── Section
+           │    ├── Section Meta
+           │    ├── Concept 1
+           │    ├── Concept 2
+           │    └── Section Summary
+           └── Chapter Summary
+
+This structure is LOCKED forever.
+
+===========================================================
+SECTION 4: CONCEPT (ATOMIC TEACHING UNIT)
+===========================================================
+
+A CONCEPT is the smallest teachable unit.
+
+Each concept contains ONLY:
+
+- Concept ID
+- Concept title
+- Canonical explanation (2–4 lines, English)
+- One or more checkpoint questions
+- Expected mistake patterns
+- Optional visual / animation tags
+
+A concept NEVER contains:
+- UI logic
+- AI prompts
+- Language translations
+- Payment logic
+
+===========================================================
+SECTION 5: TEACHING STATE MACHINE (LEARNING CORE)
+===========================================================
+
+STATE MACHINE (FINAL):
+---------------------
+START_CONCEPT
+ → EXPLAIN
+ → QUESTION_LOOP
+      → EVALUATE
+      → (CORRECT | WRONG)
+      → (RETRY | NEXT_QUESTION | ADVANCE)
+ → CONCEPT_COMPLETE
+
+KEY RULES:
+----------
+- Multiple questions per concept are supported.
+- Advancement requires conceptual correctness.
+- Repeated mistakes trigger escalation.
+
+===========================================================
+SECTION 6: MODULE ARCHITECTURE (FINAL & COMPLETE)
+===========================================================
+
+MODULE 1: INFRASTRUCTURE
+-----------------------
+Purpose:
+- Deployment, databases, APIs, logging.
+
+MVP:
+- Minimal backend + storage.
+
+MODULE 2: AUTHENTICATION & IDENTITY
+----------------------------------
+Features:
+- Register / Login
+- Google login
+- Facebook login
+- OTP login
+- Logout
+- Session management
+
+Provides:
+- user_id
+- role
+- class
+- board
+
+Does NOT know learning logic.
+
+MODULE 3: PAYMENT & ACCESS CONTROL
+---------------------------------
+Features:
+- Subscriptions
+- Pay-per-feature
+- Live tutor payments
+- Feature gating
+
+Controls ACCESS only.
+Does not control content or teaching.
+
+MVP: Stubbed (free access).
+
+MODULE 4: CURRICULUM SKELETON ENGINE (IMMUTABLE)
+-----------------------------------------------
+Defines:
+- Classes
+- Subjects
+- Chapters
+- Sections
+- Concepts
+
+Pure data. No behavior.
+
+MODULE 5: LEARNING CORE ENGINE (HEART)
+-------------------------------------
+Controls:
+- Teaching flow
+- Progression
+- Mastery
+- Retry logic
+
+Does NOT know:
+- Language
+- AI
+- Tutors
+- UI
+- Payments
+
+MODULE 6: ORCHESTRATION ENGINE (FLEXIBILITY CORE)
+------------------------------------------------
+Decides WHO responds when help is needed.
+
+Routes to:
+- AI
+- Live tutor (chat/video)
+- Forum
+- Retry explanation
+
+Learning core only signals "stuck".
+
+MODULE 7: AI EXPLANATION ENGINE
+-------------------------------
+Responsibilities:
+- Explain canonical content
+- Diagnose mistakes
+- Adapt tone (personality)
+- Produce bilingual text
+- Produce voice-ready output
+
+STRICT LIMITS:
+- Cannot invent syllabus
+- Cannot skip steps
+- Cannot change flow
+
+MODULE 8: STUDENT PROFILE & PERSONALITY ENGINE
+---------------------------------------------
+Stores:
+- Pace (slow/normal/fast)
+- Tone (serious/friendly)
+- Depth (basic/advanced)
+- Weak concepts
+
+Affects HOW teaching happens, not WHAT.
+
+MVP: Neutral defaults.
+
+MODULE 9: DIAGNOSTICS & PROGRESS ENGINE
+--------------------------------------
+Tracks:
+- Strengths
+- Weaknesses
+- Mistake patterns
+- Recommendations
+
+Outputs dashboards and advice.
+
+MODULE 10: PRACTICE & EXERCISES ENGINE
+-------------------------------------
+Supports:
+- Solved examples (future)
+- Unsolved exercises
+- Step checking
+- Adaptive practice
+
+Reuses learning core.
+
+MODULE 11: EXAM & TEST SERIES ENGINE
+-----------------------------------
+Supports:
+- Chapter tests
+- Section tests
+- Full syllabus tests
+- Timed exams
+
+MODULE 12: LIVE TUTOR INTEGRATION
+--------------------------------
+Supports:
+- Chat tutoring
+- Video calls
+- Booking
+- Billing
+
+Integrated via Orchestration Engine.
+
+MODULE 13: DISCUSSION FORUM
+--------------------------
+Supports:
+- Concept-linked questions
+- Community answers
+- Reputation & moderation
+
+Forum answers NEVER advance learning progress.
+
+MODULE 14: EXPERIENCE (UI / UX)
+-------------------------------
+Responsible for:
+- Screens
+- Animations
+- Diagrams
+- Voice playback
+- Themes
+
+Can be rewritten anytime.
+
+===========================================================
+SECTION 7: LANGUAGE & VOICE STRATEGY
+===========================================================
+
+- Canonical content is English.
+- Student selects any local language.
+- Explanation output = English + selected language.
+- Math terms remain English.
+- Same pipeline supports Text + Voice (TTS).
+
+===========================================================
+SECTION 8: FLEXIBILITY GUARANTEE
+===========================================================
+
+Late-time features (forums, tutors, payments, exams, new subjects)
+MUST integrate via:
+- Orchestration Engine
+- Responder interfaces
+
+Learning core is NEVER modified.
+
+===========================================================
+SECTION 9: MVP BUILD ORDER (LOCKED)
+===========================================================
+
+MVP MUST include:
+1. Module 4 – Curriculum Skeleton
+2. Module 5 – Learning Core
+3. Module 6 – Orchestration (AI only)
+4. Module 7 – AI Explanation
+5. Module 14 – Minimal UI
+
+Everything else is Phase 2 or Phase 3.
+
+===========================================================
+SECTION 10: REFERENCE IMPLEMENTATION
+===========================================================
+
+Section 2.2 (Polynomials in One Variable) is the reference section.
+
+If Section 2.2 works end-to-end:
+- All other sections will work by replication.
+
+===========================================================
+END OF DOCUMENT
+===========================================================

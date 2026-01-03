@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Flutter / Dart
+.dart_tool/
+build/
+
+# Environment / secrets
+.env
+*.env
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log

@@ -1,0 +1,39 @@
+{
+  "advancement_rules_version": "v1.0",
+
+  "concept_level_rules": {
+    "minimum_level_required": "CORRECT",
+    "mastery_not_mandatory": true,
+    "max_retries_per_question": 2
+  },
+
+  "retry_policy": {
+    "allow_retry": true,
+    "retry_same_question": true,
+    "retry_limit_per_question": 2
+  },
+
+  "escalation_policy": {
+    "trigger_condition": {
+      "same_mistake_category_repeated": 2
+    },
+    "action": "SIGNAL_STUCK"
+  },
+
+  "question_type_overrides": {
+    "WHY": {
+      "auto_gradable": false,
+      "requires_language_precision": true
+    },
+    "CONS": {
+      "auto_gradable": false,
+      "requires_validation": true
+    }
+  },
+
+  "global_constraints": {
+    "no_guessing_advancement": true,
+    "language_precision_matters": true,
+    "learning_core_is_authoritative": true
+  }
+}

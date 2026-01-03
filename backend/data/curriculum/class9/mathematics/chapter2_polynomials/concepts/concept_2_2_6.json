@@ -1,0 +1,26 @@
+{
+  "concept_id": "concept_2_2_6",
+  "title": "Constant and Zero Polynomial",
+
+  "definition_tags": ["constant_polynomial", "zero_polynomial"],
+
+  "canonical_explanation": {
+    "english": "A non-zero constant polynomial has degree 0, while the degree of the zero polynomial is not defined."
+  },
+
+  "checkpoint_questions": [
+    {
+      "question_id": "Q1",
+      "question_type": "NUM",
+      "prompt": "What is the degree of the zero polynomial?",
+      "expected_answer": "Not defined"
+    }
+  ],
+
+  "expected_mistakes": [
+    {
+      "mistake_code": "CON",
+      "description": "Confusing constant polynomial with zero polynomial"
+    }
+  ]
+}

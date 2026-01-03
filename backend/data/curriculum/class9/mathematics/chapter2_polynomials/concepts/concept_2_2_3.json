@@ -1,0 +1,26 @@
+{
+  "concept_id": "concept_2_2_3",
+  "title": "Terms and Coefficients",
+
+  "definition_tags": ["term", "coefficient"],
+
+  "canonical_explanation": {
+    "english": "Each part of a polynomial separated by plus or minus is called a term. The numerical factor of a term is its coefficient."
+  },
+
+  "checkpoint_questions": [
+    {
+      "question_id": "Q1",
+      "question_type": "ID",
+      "prompt": "What is the leading coefficient of -x^3 + x + 57?",
+      "expected_answer": "-1"
+    }
+  ],
+
+  "expected_mistakes": [
+    {
+      "mistake_code": "NOT",
+      "description": "Confusing exponent with coefficient"
+    }
+  ]
+}

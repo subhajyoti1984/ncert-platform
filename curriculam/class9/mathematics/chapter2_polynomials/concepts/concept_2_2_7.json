@@ -1,0 +1,21 @@
+{
+  "concept_id": "concept_2_2_7",
+  "title": "Polynomials in More Than One Variable",
+
+  "definition_tags": ["multivariable_polynomial"],
+
+  "canonical_explanation": {
+    "english": "Polynomials may involve more than one variable, such as x and y, with non-negative integer powers."
+  },
+
+  "checkpoint_questions": [
+    {
+      "question_id": "Q1",
+      "question_type": "CLASS",
+      "prompt": "Is x^2 + y^2 + xy a polynomial?",
+      "expected_answer": "Yes"
+    }
+  ],
+
+  "visual_tags": ["construction_flow"]
+}

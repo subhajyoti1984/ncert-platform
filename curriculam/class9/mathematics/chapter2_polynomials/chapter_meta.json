@@ -1,0 +1,16 @@
+{
+  "chapter_id": "M9-MATH-CH2",
+  "title": "Polynomials",
+  "class": 9,
+  "subject": "Mathematics",
+  "board": "NCERT",
+  "prerequisites": [
+    "Algebraic Expressions",
+    "Basic Exponents"
+  ],
+  "chapter_objectives": [
+    "Understand polynomials and their terminology",
+    "Classify polynomials by degree and number of terms",
+    "Work with zeroes, factorisation, and identities"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "concept_id": "concept_2_2_5",
+  "title": "Linear, Quadratic and Cubic Polynomials",
+
+  "definition_tags": ["linear", "quadratic", "cubic"],
+
+  "canonical_explanation": {
+    "english": "A polynomial of degree 1 is linear, degree 2 is quadratic, and degree 3 is cubic."
+  },
+
+  "checkpoint_questions": [
+    {
+      "question_id": "Q1",
+      "question_type": "CLASS",
+      "prompt": "Classify x^2 + 3x + 1.",
+      "expected_answer": "Quadratic"
+    }
+  ],
+
+  "expected_mistakes": [
+    {
+      "mistake_code": "LANG",
+      "description": "Using incorrect classification terminology"
+    }
+  ],
+
+  "visual_tags": ["classification_table"]
+}

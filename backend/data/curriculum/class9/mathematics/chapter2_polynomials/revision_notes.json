@@ -1,0 +1,36 @@
+{
+  "chapter_id": "M9-MATH-CH2",
+  "revision_version": "v1.0",
+
+  "quick_definitions": [
+    "Polynomial: An algebraic expression with non-negative integer powers of variables",
+    "Degree: Highest power of the variable with non-zero coefficient",
+    "Monomial/Binomial/Trinomial: Polynomial with 1/2/3 terms"
+  ],
+
+  "must_remember_points": [
+    "Degree is NOT number of terms",
+    "Degree of a non-zero constant polynomial is 0",
+    "Degree of zero polynomial is not defined",
+    "Fractional or negative powers are NOT allowed in polynomials"
+  ],
+
+  "classification_snapshot": {
+    "degree_1": "Linear",
+    "degree_2": "Quadratic",
+    "degree_3": "Cubic"
+  },
+
+  "exam_traps": [
+    "Forgetting to justify why an expression is not a polynomial",
+    "Using wrong terminology like 'square polynomial'",
+    "Ignoring the condition of non-zero coefficient"
+  ],
+
+  "one_minute_checklist": [
+    "Check powers of variable",
+    "Identify highest power",
+    "Ensure correct classification term",
+    "Mention degree explicitly"
+  ]
+}

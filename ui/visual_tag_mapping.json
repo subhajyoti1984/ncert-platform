@@ -1,0 +1,47 @@
+{
+  "visual_tag_mapping_version": "v1.0",
+
+  "visual_tags": {
+    "allowed_vs_forbidden_powers": {
+      "description": "Shows valid and invalid exponents of variables",
+      "render_type": "static_diagram",
+      "ui_behavior": "illustrative_only"
+    },
+
+    "degree_highlight": {
+      "description": "Highlights the highest power term determining degree",
+      "render_type": "animated_highlight",
+      "ui_behavior": "non_interactive"
+    },
+
+    "constant_polynomial_intuition": {
+      "description": "Explains why a non-zero constant has degree 0",
+      "render_type": "step_visual",
+      "ui_behavior": "illustrative_only"
+    },
+
+    "classification_table": {
+      "description": "Maps degree to polynomial type (linear, quadratic, cubic)",
+      "render_type": "table",
+      "ui_behavior": "read_only"
+    },
+
+    "construction_flow": {
+      "description": "Visual steps for constructing polynomials from situations",
+      "render_type": "flow_diagram",
+      "ui_behavior": "illustrative_only"
+    },
+
+    "substitution_steps": {
+      "description": "Step-by-step substitution while evaluating a polynomial",
+      "render_type": "step_animation",
+      "ui_behavior": "illustrative_only"
+    }
+  },
+
+  "global_ui_rules": {
+    "visuals_do_not_decide_logic": true,
+    "visuals_do_not_affect_progression": true,
+    "visuals_are_optional": true
+  }
+}

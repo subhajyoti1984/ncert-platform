@@ -1,0 +1,40 @@
+{
+  "concept_id": "concept_2_2_4",
+  "title": "Degree of a Polynomial",
+
+  "definition_tags": ["degree"],
+
+  "canonical_explanation": {
+    "english": "The degree of a polynomial is the highest power of the variable with a non-zero coefficient."
+  },
+
+  "checkpoint_questions": [
+    {
+      "question_id": "Q1",
+      "question_type": "WHY",
+      "prompt": "Which term decides the degree of a polynomial and why must it be non-zero?",
+      "expected_answer": "The term with the highest power and non-zero coefficient."
+    },
+    {
+      "question_id": "Q2",
+      "question_type": "NUM",
+      "prompt": "What is the degree of 7?",
+      "expected_answer": "0"
+    },
+    {
+      "question_id": "Q3",
+      "question_type": "NUM",
+      "prompt": "What is the degree of 0?",
+      "expected_answer": "Not defined"
+    }
+  ],
+
+  "expected_mistakes": [
+    {
+      "mistake_code": "CON",
+      "description": "Thinking degree equals number of terms"
+    }
+  ],
+
+  "visual_tags": ["degree_highlight", "constant_polynomial_intuition"]
+}

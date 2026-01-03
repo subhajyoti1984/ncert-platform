@@ -1,0 +1,41 @@
+{
+  "chapter_id": "M9-MATH-CH2",
+  "diagnostic_version": "v1.0",
+
+  "global_mistake_patterns": [
+    {
+      "mistake_code": "DEF",
+      "description": "Misunderstanding polynomial definition",
+      "trigger_concepts": [
+        "concept_2_2_2",
+        "concept_2_2_4"
+      ],
+      "recommendation": "Revisit definition of polynomial and allowed powers"
+    },
+    {
+      "mistake_code": "CON",
+      "description": "Confusion between degree and number of terms",
+      "trigger_concepts": [
+        "concept_2_2_4",
+        "concept_2_2_5"
+      ],
+      "recommendation": "Visual explanation of degree as highest power"
+    },
+    {
+      "mistake_code": "LANG",
+      "description": "Incorrect classification language",
+      "trigger_concepts": [
+        "concept_2_2_5"
+      ],
+      "recommendation": "Revise linear/quadratic/cubic terminology"
+    }
+  ],
+
+  "chapter_mastery_thresholds": {
+    "minimum_correct_concepts": 0.7,
+    "critical_concepts": [
+      "concept_2_2_2",
+      "concept_2_2_4"
+    ]
+  }
+}

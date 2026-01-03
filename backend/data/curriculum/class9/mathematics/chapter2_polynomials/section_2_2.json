@@ -1,0 +1,26 @@
+{
+  "section_id": "M9-C2-S2.2",
+  "title": "Polynomials in One Variable",
+  "estimated_time_minutes": 45,
+
+  "concept_sequence": [
+    "concept_2_2_1",
+    "concept_2_2_2",
+    "concept_2_2_3",
+    "concept_2_2_4",
+    "concept_2_2_5",
+    "concept_2_2_6",
+    "concept_2_2_7"
+  ],
+
+  "exam_expectations": {
+    "degree_must_be_mentioned": true,
+    "classification_language_strict": true,
+    "justification_required": true
+  },
+
+  "language_rules": {
+    "math_terms_untranslated": ["degree", "polynomial", "coefficient"],
+    "bilingual_explanation_allowed": true
+  }
+}
