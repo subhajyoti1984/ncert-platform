@@ -18,10 +18,14 @@ ALGORITHM = "HS256"
 
 @router.post("/bootstrap")
 def bootstrap_admin():
+
+    # 🔒 HARD STOP unless explicitly allowed
+    if os.getenv("ALLOW_BOOTSTRAP") != "true":
+        raise HTTPException(status_code=403, detail="Bootstrap disabled")
+
     conn = get_conn()
     cur = conn.cursor()
 
-    # ✅ Create users table if missing
     cur.execute("""
     CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
@@ -32,7 +36,6 @@ def bootstrap_admin():
     )
     """)
 
-    # Check if admin already exists
     cur.execute("SELECT COUNT(*) FROM users WHERE is_admin = TRUE")
     admin_count = cur.fetchone()[0]
 
@@ -53,11 +56,7 @@ def bootstrap_admin():
     conn.commit()
     conn.close()
 
-    return {
-        "message": "Admin created",
-        "email": "admin@ncert.local",
-        "password": "admin123"
-    }
+    return {"message": "Admin created"}
 
 # -------------------------
 # LOGIN
