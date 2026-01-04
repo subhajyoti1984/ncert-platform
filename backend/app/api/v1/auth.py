@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from app.core.db import get_conn
-from app.core.security import verify_password, hash_password
+from app.core.security import verify_password, hash_password, get_current_user
 import jwt
 import datetime
 import os
@@ -96,6 +96,29 @@ def login(payload: dict):
 
     return {"token": token}
 
+@router.post("/admin/change-password")
+def change_admin_password(
+    new_password: str,
+    admin_id: str = Depends(get_current_user)
+):
+    conn = get_conn()
+    cur = conn.cursor()
+
+    from app.core.security import hash_password
+
+    cur.execute(
+        """
+        UPDATE users
+        SET password_hash = %s
+        WHERE id = %s AND is_admin = TRUE
+        """,
+        (hash_password(new_password), admin_id)
+    )
+
+    conn.commit()
+    conn.close()
+
+    return {"status": "password updated"}
 
 # -------------------------
 # CURRENT USER
