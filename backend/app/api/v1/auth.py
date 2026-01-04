@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from app.core.db import get_conn
-from app.core.security import verify_password
+from app.core.security import verify_password, hash_password
 import jwt
 import datetime
 import os
@@ -16,6 +16,42 @@ security = HTTPBearer()
 SECRET = os.getenv("JWT_SECRET", "CHANGE_THIS")
 ALGORITHM = "HS256"
 
+@router.post("/bootstrap")
+def bootstrap_admin():
+    """
+    One-time admin bootstrap.
+    DELETE THIS ENDPOINT AFTER FIRST USE.
+    """
+
+    conn = get_conn()
+    with conn.cursor() as cur:
+        cur.execute("SELECT COUNT(*) FROM users")
+        count = cur.fetchone()[0]
+
+        if count > 0:
+            raise HTTPException(
+                status_code=403,
+                detail="Bootstrap already completed"
+            )
+
+        cur.execute(
+            """
+            INSERT INTO users (email, password_hash)
+            VALUES (%s, %s)
+            """,
+            (
+                "admin@ncert.app",
+                hash_password("ChangeThis123")
+            )
+        )
+
+        conn.commit()
+
+    return {
+        "status": "admin created",
+        "email": "admin@ncert.app",
+        "password": "ChangeThis123"
+    }
 
 # -------------------------
 # LOGIN
