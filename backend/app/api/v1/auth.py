@@ -18,39 +18,45 @@ ALGORITHM = "HS256"
 
 @router.post("/bootstrap")
 def bootstrap_admin():
-    """
-    One-time admin bootstrap.
-    DELETE THIS ENDPOINT AFTER FIRST USE.
-    """
-
     conn = get_conn()
-    with conn.cursor() as cur:
-        cur.execute("SELECT COUNT(*) FROM users")
-        count = cur.fetchone()[0]
+    cur = conn.cursor()
 
-        if count > 0:
-            raise HTTPException(
-                status_code=403,
-                detail="Bootstrap already completed"
-            )
+    # ✅ Create users table if missing
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        email TEXT UNIQUE NOT NULL,
+        password_hash TEXT NOT NULL,
+        is_admin BOOLEAN DEFAULT FALSE,
+        created_at TIMESTAMP DEFAULT NOW()
+    )
+    """)
 
-        cur.execute(
-            """
-            INSERT INTO users (email, password_hash)
-            VALUES (%s, %s)
-            """,
-            (
-                "admin@ncert.app",
-                hash_password("ChangeThis123")
-            )
-        )
+    # Check if admin already exists
+    cur.execute("SELECT COUNT(*) FROM users WHERE is_admin = TRUE")
+    admin_count = cur.fetchone()[0]
 
-        conn.commit()
+    if admin_count > 0:
+        conn.close()
+        return {"message": "Admin already exists"}
+
+    from app.core.security import hash_password
+
+    cur.execute(
+        """
+        INSERT INTO users (email, password_hash, is_admin)
+        VALUES (%s, %s, TRUE)
+        """,
+        ("admin@ncert.local", hash_password("admin123"))
+    )
+
+    conn.commit()
+    conn.close()
 
     return {
-        "status": "admin created",
-        "email": "admin@ncert.app",
-        "password": "ChangeThis123"
+        "message": "Admin created",
+        "email": "admin@ncert.local",
+        "password": "admin123"
     }
 
 # -------------------------
