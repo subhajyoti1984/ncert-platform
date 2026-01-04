@@ -28,12 +28,13 @@ def login(payload: dict):
     if not email or not password:
         raise HTTPException(status_code=400, detail="Email and password required")
 
-    with get_conn.cursor() as cur:
-        cur.execute(
-            "SELECT id, password_hash FROM users WHERE email = %s",
-            (email,)
-        )
-        row = cur.fetchone()
+    with get_conn() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT id, password_hash FROM users WHERE email = %s",
+                (email,)
+            )
+            row = cur.fetchone()
 
     if row is None:
         raise HTTPException(status_code=401, detail="Invalid credentials")

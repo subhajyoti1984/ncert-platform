@@ -8,17 +8,39 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      routes: {
-        '/': (_) => const LoginScreen(),
-        '/chapters': (_) => const ChapterListScreen(),
-        '/learn': (_) => const LearningLoopScreen(),
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (_) => const LoginScreen(),
+            );
+
+          case '/chapters':
+            final token = settings.arguments as String;
+            return MaterialPageRoute(
+              builder: (_) => ChapterListScreen(token: token),
+            );
+
+          case '/learn':
+            final token = settings.arguments as String;
+            return MaterialPageRoute(
+              builder: (_) => LearningLoopScreen(token: token),
+            );
+
+          default:
+            return MaterialPageRoute(
+              builder: (_) => const Scaffold(
+                body: Center(child: Text('Route not found')),
+              ),
+            );
+        }
       },
     );
   }

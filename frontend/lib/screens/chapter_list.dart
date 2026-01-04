@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'learning_loop.dart';
 
 class ChapterListScreen extends StatelessWidget {
-  const ChapterListScreen({Key? key}) : super(key: key);
+  final String token;
+
+  const ChapterListScreen({
+    Key? key,
+    required this.token,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +18,14 @@ class ChapterListScreen extends StatelessWidget {
           ListTile(
             title: const Text("Chapter 2: Polynomials"),
             onTap: () {
-              Navigator.pushNamed(context, '/learn');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => LearningLoopScreen(token: token),
+                ),
+              );
             },
-          )
+          ),
         ],
       ),
     );
