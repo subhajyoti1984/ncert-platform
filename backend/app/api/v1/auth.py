@@ -16,48 +16,6 @@ security = HTTPBearer()
 SECRET = os.getenv("JWT_SECRET", "CHANGE_THIS")
 ALGORITHM = "HS256"
 
-@router.post("/bootstrap")
-def bootstrap_admin():
-
-    # 🔒 HARD STOP unless explicitly allowed
-    if os.getenv("ALLOW_BOOTSTRAP") != "true":
-        raise HTTPException(status_code=403, detail="Bootstrap disabled")
-
-    conn = get_conn()
-    cur = conn.cursor()
-
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-        id SERIAL PRIMARY KEY,
-        email TEXT UNIQUE NOT NULL,
-        password_hash TEXT NOT NULL,
-        is_admin BOOLEAN DEFAULT FALSE,
-        created_at TIMESTAMP DEFAULT NOW()
-    )
-    """)
-
-    cur.execute("SELECT COUNT(*) FROM users WHERE is_admin = TRUE")
-    admin_count = cur.fetchone()[0]
-
-    if admin_count > 0:
-        conn.close()
-        return {"message": "Admin already exists"}
-
-    from app.core.security import hash_password
-
-    cur.execute(
-        """
-        INSERT INTO users (email, password_hash, is_admin)
-        VALUES (%s, %s, TRUE)
-        """,
-        ("admin@ncert.local", hash_password("admin123"))
-    )
-
-    conn.commit()
-    conn.close()
-
-    return {"message": "Admin created"}
-
 # -------------------------
 # LOGIN
 # -------------------------
@@ -95,30 +53,6 @@ def login(payload: dict):
     )
 
     return {"token": token}
-
-@router.post("/admin/change-password")
-def change_admin_password(
-    new_password: str,
-    admin_id: str = Depends(get_current_user)
-):
-    conn = get_conn()
-    cur = conn.cursor()
-
-    from app.core.security import hash_password
-
-    cur.execute(
-        """
-        UPDATE users
-        SET password_hash = %s
-        WHERE id = %s AND is_admin = TRUE
-        """,
-        (hash_password(new_password), admin_id)
-    )
-
-    conn.commit()
-    conn.close()
-
-    return {"status": "password updated"}
 
 # -------------------------
 # CURRENT USER
